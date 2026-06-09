@@ -12,9 +12,10 @@ Marcas: 💳 consome crédito · 🆓 grátis · ⏳ assíncrono (job).
 
 ## Prospecção / Descoberta
 
-### `search_prospects` 💳
+### `search_prospects` 🆓
 - **O quê.** Pessoas/decisores na base global (perfil estilo LinkedIn).
 - **Quando.** Achar decisores de uma empresa (ancorando pelo identificador da empresa) ou por recorte (cargo + país + setor).
+- **Custo.** Gratuita — busca/identificação não consome crédito. O custo só aparece no enriquecimento (`enrich_list`). Mesmo grátis, vale curar: mire qualidade, não volume.
 - **Pré-requisito:** cargo/categoria/localização só aceitam catálogo → resolva com `lookup_filter_values(entity_type="prospects")` antes.
 - **Params (`filters`/`exclude`):** `job_title {values[], include_related_job_titles?}`, `job_department {values[]}`, `job_level {values[]}` (owner|c-suite|vice president|director|manager|partner|senior non-managerial|non-managerial|junior), identificador da empresa, `company_name`, `company_size`, `company_revenue`, `country_code`, `company_country_code`, `region_country_code` (`us-ca`), `city_region_country` (`Sao Paulo, BR`), `naics_category`, `google_category`, `linkedin_category`, `total_experience_months`/`current_role_months {gte,lte}`, `page`, `page_size` (50, máx 100).
 - **Retorna:** perfis (ver `campos-retornados.md`): `full_name`, `job_title`, níveis de cargo, links de LinkedIn, etc.
