@@ -30,9 +30,9 @@ link_brazil_to_global(cnpj, domain, company_name)  →  { business_id }
 
 - **Sempre passe `domain` E `company_name`.** Sem o vínculo por CNPJ, o match cai para domínio e depois nome — informar os dois aumenta o acerto.
 - `found: false`? Tente outro domínio de `dominios[]` antes de desistir. Sem o identificador da empresa não há como buscar os decisores.
-- Avise o usuário: "vou consultar a base global da Nuvia para encontrar os decisores — isso consome créditos de busca".
+- Avise o usuário: "vou fazer a ponte para a base global da Nuvia para localizar a empresa — esse vínculo consome créditos". (A busca dos decisores em si, no passo seguinte, é gratuita.)
 
-## Passo 3 — Buscar os decisores (consome crédito)
+## Passo 3 — Buscar os decisores (grátis)
 
 ```
 search_prospects(
@@ -52,11 +52,11 @@ Regras que definem a qualidade:
 
 ## Passo 4 — Busca por recorte (sem empresa específica)
 
-Para "decisores de tal cargo em tal setor/região": resolva `job_title` (catálogo, prospects) e a localização (`city_region_country`, ex. `"Sao Paulo, BR"`), combine com `job_level`, e refine até uma lista enxuta antes de paginar. Lembre: cada página custa crédito.
+Para "decisores de tal cargo em tal setor/região": resolva `job_title` (catálogo, prospects) e a localização (`city_region_country`, ex. `"Sao Paulo, BR"`), combine com `job_level`, e refine até uma lista enxuta antes de paginar. A busca é gratuita, mas o objetivo é **qualidade, não volume**: uma lista de milhares de contatos pouco relevantes é um fracasso, não um sucesso — refine os filtros até o recorte ficar enxuto.
 
 ## Passo 5 — Entregar
 
-Apresente uma tabela limpa: **Nome · Cargo · Nível · Localização · LinkedIn** (use o slug público de `linkedin_url_array[1]`). Não mostre identificadores internos. Se o usuário quiser trabalhar esses contatos dentro da Nuvia, encaminhe para a skill `salvar-na-nuvia`.
+Apresente uma tabela limpa: **Nome · Cargo · Nível · Localização · LinkedIn**. Para o LinkedIn, prefira o **handle legível** de `linkedin_url_array` (ex: `linkedin.com/in/nome-sobrenome`) — normalmente o segundo item; se o array só tiver um item, é ele mesmo. Evite a URN opaca (`linkedin.com/in/ACoAA…`). Não mostre identificadores internos. Se o usuário quiser trabalhar esses contatos dentro da Nuvia, encaminhe para a skill `salvar-na-nuvia`.
 
 ## Próximos passos comuns
 - Cruzar quem é dono vs quem aparece publicamente → skill `investigar-empresa-br`.

@@ -33,10 +33,13 @@ Para cada nome, cruze presença no quadro de sócios (QSA) × presença no digit
 2. Tem sócio PJ? → bucket 🔗; opcionalmente search_brazil_companies no CNPJ da holding.
 3. link_brazil_to_global(cnpj, domain, razão social) → identificador global
    └─ found:false? → tentar outro domínio/nome. Sem ele, não há fase digital.
-4. search_prospects(empresa, job_level=[c-suite,vice president,director])
+4. search_prospects(empresa, job_level=[c-suite,vice president,director])  ← grátis
 5. Cruzar (matching abaixo) e classificar (buckets acima).
-6. Entregar tabela: Nome | Papel no quadro | Cargo digital | Bucket | Confiança.
+6. Entregar tabela UNIFICADA (outer join, ninguém descartado):
+   Nome | Papel no quadro | Cargo digital | LinkedIn | Bucket | Confiança.
 ```
+
+> O cruzamento é um **outer join** por nome: sócio com match vira linha unificada (com LinkedIn); sócio sem pegada digital entra mesmo assim (LinkedIn em branco, 🔵); contato digital sem ser sócio continua listado (🟡/⚪). Nunca dropar um lado por não casar com o outro.
 
 ## Matching de nomes (heurístico — não há chave comum)
 
@@ -45,6 +48,7 @@ Para cada nome, cruze presença no quadro de sócios (QSA) × presença no digit
 3. **Match forte:** primeiro nome **e** último sobrenome batem. Nomes do meio que somem no LinkedIn são esperados.
 4. **Match parcial:** só um lado bate → confirme por cargo/empresa.
 5. **CPF mascarado** só desambigua dentro do quadro de sócios (homônimos); o LinkedIn não expõe CPF, então nunca fecha match sozinho.
+6. **LinkedIn para exibir:** prefira o **handle legível** do `linkedin_url_array` (ex: `linkedin.com/in/nome-sobrenome`) — costuma ser o segundo item. O campo `linkedin` e o primeiro item do array trazem a URN opaca (`linkedin.com/in/ACoAA…`); só use-a se não houver handle legível.
 
 | Confiança | Critério |
 |-----------|----------|
