@@ -93,4 +93,4 @@ claude plugin validate .
 claude plugin validate ./plugin
 ```
 
-Suporte: suporte@nuvia.co
+Suporte: developers@nuvia.ai · https://nuvia.ai

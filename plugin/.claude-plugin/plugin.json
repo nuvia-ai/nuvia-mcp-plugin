@@ -5,9 +5,9 @@
   "version": "0.1.0",
   "author": {
     "name": "Nuvia",
-    "email": "suporte@nuvia.co"
+    "email": "developers@nuvia.ai"
   },
-  "homepage": "https://nuvia.co",
+  "homepage": "https://nuvia.ai",
   "repository": "https://github.com/nuvia-ai/nuvia-mcp-plugin",
   "license": "MIT",
   "keywords": [

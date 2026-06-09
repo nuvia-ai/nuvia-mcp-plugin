@@ -4,7 +4,7 @@
   "description": "Plugins da Nuvia para Claude Code — prospecção, CRM e atendimento via MCP da Nuvia.",
   "owner": {
     "name": "Nuvia",
-    "email": "suporte@nuvia.co"
+    "email": "developers@nuvia.ai"
   },
   "plugins": [
     {
