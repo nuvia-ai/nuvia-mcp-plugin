@@ -1,6 +1,6 @@
 ---
 name: prospectar-decisores
-description: Encontra decisores e contatos-chave de uma empresa específica usando o MCP da Nuvia. Use quando o usuário quer achar o CEO, diretores, C-level ou qualquer decisor de uma empresa (por nome, domínio ou CNPJ), ou montar uma lista de decisores por recorte (cargo + setor + região). Aplica a ordem de custo correta (grátis primeiro), resolve a empresa, e pagina até encontrar.
+description: Decisores de uma empresa. Localiza CEO, diretores e C-level por nome, domínio ou CNPJ, ou monta uma lista de decisores por recorte (cargo, setor, região). Use quando o usuário quer descobrir quem decide numa empresa, achar o contato certo para abordar, ou mapear a liderança de uma conta.
 ---
 
 # Prospectar decisores de uma empresa

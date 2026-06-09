@@ -1,6 +1,6 @@
 ---
 name: gerenciar-contatos
-description: Cria, edita, lista e anota Pessoas (contatos) na Nuvia, e reconcilia telefones com a base. Use quando o usuário quer cadastrar contatos (individual ou em lote), atualizar dados, conferir se um contato já existe, dedupar por telefone, ou registrar notas. Tudo gratuito e dentro da empresa do usuário.
+description: Pessoas (contatos) na Nuvia. Cria, edita, lista, anota e reconcilia telefones com a base. Use quando o usuário quer cadastrar contatos (individual ou em lote), atualizar dados, conferir se um contato já existe, evitar duplicados por telefone, ou registrar notas num contato.
 ---
 
 # Gerenciar Pessoas (contatos) na Nuvia

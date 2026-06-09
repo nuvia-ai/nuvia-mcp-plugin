@@ -1,6 +1,6 @@
 ---
 name: salvar-na-nuvia
-description: Materializa resultados de busca (empresas ou pessoas) como registros na Nuvia, opcionalmente dentro de uma Lista. Use depois de uma busca curada, quando o usuário quer trabalhar os contatos/empresas dentro da plataforma. Cuida do job assíncrono e confirma a importação. É gratuito.
+description: Resultados de busca viram registros na Nuvia. Salva pessoas ou empresas encontradas como Pessoas/Empresas, opcionalmente dentro de uma Lista. Use depois de uma busca, quando o usuário quer trabalhar esses contatos ou empresas dentro da plataforma — e devolve o link da Lista criada.
 ---
 
 # Salvar resultados de busca na Nuvia

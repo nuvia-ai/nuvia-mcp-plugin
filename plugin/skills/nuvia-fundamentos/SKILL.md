@@ -1,6 +1,6 @@
 ---
 name: nuvia-fundamentos
-description: Conhecimento-base para operar o MCP da Nuvia com as melhores práticas. Use SEMPRE antes de qualquer busca, prospecção ou operação na Nuvia (Listas, Pessoas, Empresas) — define a ordem de custo (grátis antes de pago), a regra de resolver filtros via lookup antes de buscar, a paginação correta, o glossário de linguagem e a terminologia oficial da plataforma. As outras skills da Nuvia dependem desta.
+description: Fundamentos para operar o MCP da Nuvia. Reúne as melhores práticas — ordem de uso das ferramentas, como resolver filtros antes de buscar, paginação, terminologia oficial da plataforma e como apresentar resultados. Use SEMPRE antes de qualquer busca, prospecção ou operação na Nuvia (Listas, Pessoas, Empresas); as outras skills da Nuvia dependem desta.
 ---
 
 # Fundamentos do MCP da Nuvia

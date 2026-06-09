@@ -1,6 +1,6 @@
 ---
 name: pesquisar-empresas-global
-description: Pesquisa empresas na base global por firmográficos — setor/NAICS, porte, faturamento, localização, tech stack, intenção de compra. Consome créditos. Use quando o usuário quer prospectar contas com foco global/fora do Brasil, ou obter os firmográficos e o identificador de uma empresa. Resolve categorias no catálogo antes de buscar e cura o recorte para não desperdiçar crédito.
+description: Empresas na base global por firmográficos. Filtra por setor/NAICS, porte, faturamento, localização, tech stack e intenção de compra. Use quando o usuário quer prospectar contas com foco global ou fora do Brasil, ou obter os firmográficos de uma empresa para depois buscar seus decisores.
 ---
 
 # Pesquisar empresas na base global

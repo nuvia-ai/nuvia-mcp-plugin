@@ -1,6 +1,6 @@
 ---
 name: pesquisar-empresas-br
-description: "Pesquisa empresas brasileiras na base nacional de CNPJ (Receita Federal) por CNPJ, setor/CNAE, UF/cidade, porte, situação cadastral, capital social ou sócio. Gratuito. Use quando o usuário quer montar uma lista de empresas BR por recorte (ex.: empresas de energia ativas em MG, MEIs de tecnologia em SP), achar uma empresa por CNPJ, ou listar empresas de um sócio. Sempre resolve os filtros no catálogo antes de buscar."
+description: "Empresas brasileiras na base nacional de CNPJ. Filtra por CNPJ, setor/CNAE, UF/cidade, porte, situação cadastral, capital social ou sócio. Use quando o usuário quer montar uma lista de empresas BR por recorte (ex.: empresas de energia ativas em MG, MEIs de tecnologia em SP), achar uma empresa por CNPJ, ou listar todas as empresas de um sócio."
 ---
 
 # Pesquisar empresas brasileiras

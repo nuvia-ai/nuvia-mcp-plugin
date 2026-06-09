@@ -1,6 +1,6 @@
 ---
 name: gerenciar-listas
-description: Cria e trabalha Listas na Nuvia — Listas de Pessoas OU Empresas, com colunas próprias, registros e edição em lote. Use quando o usuário quer organizar contatos/empresas em Listas, adicionar colunas (customizadas ou espelhando campos), inserir registros, listar/filtrar linhas, ou atualizar células. Gratuito.
+description: Listas na Nuvia. Cria e trabalha Listas de Pessoas ou Empresas, com colunas próprias, registros e edição em lote. Use quando o usuário quer organizar contatos ou empresas em Listas, adicionar colunas, inserir registros, filtrar linhas, ou atualizar dados em lote.
 ---
 
 # Gerenciar Listas na Nuvia

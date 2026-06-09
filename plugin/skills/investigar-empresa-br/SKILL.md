@@ -1,6 +1,6 @@
 ---
 name: investigar-empresa-br
-description: Investiga uma empresa brasileira cruzando o quadro de sócios e administradores (dados públicos da Receita) com a identidade digital da empresa (decisores públicos). Use quando o usuário quer entender quem realmente manda numa empresa, mapear donos vs executivos, descobrir a estrutura societária, seguir holdings/grupo econômico, ou qualificar uma conta antes de abordar. Distingue LTDA (sócios = donos) de S.A. (sócios = diretoria).
+description: Investigação societária de empresa brasileira. Cruza o quadro de sócios e administradores (dados públicos da Receita) com a liderança que aparece publicamente, distinguindo LTDA (sócios = donos) de S.A. (sócios = diretoria). Use quando o usuário quer entender quem realmente manda numa empresa, mapear donos versus executivos, seguir holdings e grupo econômico, ou qualificar uma conta antes de abordar.
 ---
 
 # Investigar empresa BR (sócios × identidade digital)

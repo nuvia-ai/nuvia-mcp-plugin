@@ -1,6 +1,6 @@
 ---
 name: enriquecer-contatos
-description: Enriquece e-mail e telefone dos contatos de uma Lista da Nuvia. CONSOME CRÉDITOS (e-mail = 1/contato, telefone = 10/contato). Use quando o usuário pede explicitamente para preencher contatos faltantes. Sempre confirma o custo estimado antes de disparar, porque o gasto é enfileirado de imediato e roda sobre todos os contatos elegíveis do recorte.
+description: Enriquecimento de contatos de uma Lista. Preenche e-mail e telefone faltantes das Pessoas de uma Lista da Nuvia. Use quando o usuário pede explicitamente para completar os dados de contato de uma Lista antes de uma campanha ou abordagem.
 ---
 
 # Enriquecer contatos de uma lista
