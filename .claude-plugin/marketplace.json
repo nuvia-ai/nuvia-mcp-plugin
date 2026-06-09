@@ -9,6 +9,7 @@
   "plugins": [
     {
       "name": "nuvia-mcp",
+      "displayName": "Nuvia",
       "source": "./plugin",
       "description": "Skills que sabem usar o MCP da Nuvia com as melhores práticas: prospecção global e BR, investigação societária, Pessoas e Empresas, Listas, enriquecimento e atendimento. Já configura o conector da Nuvia.",
       "category": "productivity",

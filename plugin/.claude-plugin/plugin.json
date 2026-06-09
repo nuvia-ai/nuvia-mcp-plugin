@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "nuvia-mcp",
+  "displayName": "Nuvia",
   "description": "Skills que sabem usar o MCP da Nuvia com as melhores práticas — prospecção (global e Brasil), investigação societária, Pessoas e Empresas, Listas, enriquecimento e atendimento. Inclui o conector do MCP da Nuvia.",
   "version": "0.1.0",
   "author": {
