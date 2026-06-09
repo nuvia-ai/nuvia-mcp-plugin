@@ -12,7 +12,7 @@
 
 ## Como `enrich_list` funciona
 
-1. Roda sobre uma **lista do CRM** (não sobre resultados de busca soltos). Fluxo: `save_search_results` → lista → `enrich_list`.
+1. Roda sobre uma **Lista** da Nuvia (não sobre resultados de busca soltos). Fluxo: `save_search_results` → Lista → `enrich_list`.
 2. **Assíncrono e por contato.** Custo: e-mail = 1 crédito · telefone = 10 créditos, por contato. Roda sobre **todos** os elegíveis do recorte. Retorna `{ jobId, estimatedCredits, contactCount }` — o gasto é enfileirado, **não é simulação**.
 3. Grava o resultado **no contato** e nas colunas da lista que espelham `record_field` email/phone. Para enxergar: `add_list_column` com `source=record` + `record_field: "email"`/`"phone_number"`, depois `list_records`.
 

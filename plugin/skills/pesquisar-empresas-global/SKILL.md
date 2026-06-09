@@ -44,4 +44,4 @@ O `naics` (código) que volta numa empresa é o mesmo `value` do lookup `naics_c
 
 ## Entregar
 
-Tabela: **Empresa · Domínio · Setor · Porte · Faturamento · Localização · LinkedIn**. Não exponha o identificador interno. Para achar os decisores dessa empresa, encaminhe para `prospectar-decisores` (você já tem o identificador). Para trazer ao CRM, use `salvar-no-crm`.
+Tabela: **Empresa · Domínio · Setor · Porte · Faturamento · Localização · LinkedIn**. Não exponha o identificador interno. Para achar os decisores dessa empresa, encaminhe para `prospectar-decisores` (você já tem o identificador). Para trazer à Nuvia, use `salvar-na-nuvia`.

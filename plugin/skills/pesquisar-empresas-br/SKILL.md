@@ -44,4 +44,4 @@ Combine UF + setor/CNAE + situação até a lista ficar enxuta. `filter_operator
 
 ## Entregar
 
-Tabela: **Empresa · CNPJ · Setor/CNAE · UF/Cidade · Situação · Porte**. Se o usuário quiser prospectar decisores dessas empresas, encaminhe para `prospectar-decisores` ou `investigar-empresa-br`. Para trazer ao CRM, use `salvar-no-crm`.
+Tabela: **Empresa · CNPJ · Setor/CNAE · UF/Cidade · Situação · Porte**. Se o usuário quiser prospectar decisores dessas empresas, encaminhe para `prospectar-decisores` ou `investigar-empresa-br`. Para trazer à Nuvia, use `salvar-na-nuvia`.

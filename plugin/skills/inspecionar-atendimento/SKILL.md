@@ -1,6 +1,6 @@
 ---
 name: inspecionar-atendimento
-description: Inspeciona conversas de atendimento e campanhas no CRM da Nuvia (somente leitura). Use quando o usuário quer revisar conversas do inbox, ler o histórico de mensagens de um contato, ou inventariar campanhas e ver métricas/detalhes de uma campanha. Gratuito.
+description: Inspeciona conversas de atendimento e campanhas na Nuvia (somente leitura). Use quando o usuário quer revisar conversas do inbox, ler o histórico de mensagens de um contato, ou inventariar campanhas e ver métricas/detalhes de uma campanha. Gratuito.
 ---
 
 # Inspecionar atendimento e campanhas

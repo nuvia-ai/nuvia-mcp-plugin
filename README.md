@@ -1,6 +1,6 @@
 # Plugin Nuvia para Claude Code
 
-Skills que ensinam o Claude a usar o **MCP da Nuvia** com as melhores práticas de prospecção, CRM e atendimento — e que já trazem o conector da Nuvia configurado.
+Skills que ensinam o Claude a usar o **MCP da Nuvia** com as melhores práticas de prospecção, Listas e atendimento — e que já trazem o conector da Nuvia configurado.
 
 O que vem dentro:
 
@@ -11,9 +11,9 @@ O que vem dentro:
 | `investigar-empresa-br` | Cruzar quadro de sócios × identidade digital (quem manda de verdade). |
 | `pesquisar-empresas-br` | Empresas brasileiras por CNPJ/setor/UF/sócio (grátis). |
 | `pesquisar-empresas-global` | Empresas na base global por firmográficos. |
-| `salvar-no-crm` | Materializar resultados de busca como registros/listas. |
+| `salvar-na-nuvia` | Materializar resultados de busca como registros/Listas. |
 | `gerenciar-contatos` | Criar, editar, dedupar e anotar contatos. |
-| `gerenciar-listas` | Listas/tabelas, colunas e registros do CRM. |
+| `gerenciar-listas` | Listas, colunas e registros (Pessoas/Empresas). |
 | `enriquecer-contatos` | Preencher e-mail/telefone (consome créditos). |
 | `inspecionar-atendimento` | Ler conversas do inbox e campanhas. |
 
@@ -59,12 +59,12 @@ Autentique-se quando solicitado. As ferramentas do MCP ficam disponíveis no cha
 ## As ferramentas do MCP (referência rápida)
 
 **Prospecção:** `search_businesses`, `search_prospects`, `search_brazil_companies`, `lookup_filter_values`, `lookup_brazil_filter_values`, `link_brazil_to_global`, `link_global_to_brazil`.
-**Salvar no CRM:** `save_search_results`, `get_save_status`.
+**Salvar na Nuvia:** `save_search_results`, `get_save_status`.
 **Contatos:** `list_contacts`, `find_contacts_by_phone`, `create_contact(s)`, `update_contact(s)`, `add_contact_note`, `list_contact_notes`.
 **Listas e registros:** `list_lists`, `get_list`, `create_list`, `add_list_column`, `list_records`, `add_records`, `update_record(s)`, `enrich_list`.
 **Atendimento e campanhas (leitura):** `list_conversations`, `list_messages`, `list_campaigns`, `get_campaign`.
 
-> **Custo:** as buscas globais (`search_prospects`, `search_businesses`), a ponte `link_brazil_to_global` e o `enrich_list` consomem créditos. A base BR (`search_brazil_companies`, `link_global_to_brazil`) e todo o CRM de leitura/escrita são gratuitos. Não há rota de saldo — confira no painel da Nuvia.
+> **Custo:** as buscas globais (`search_prospects`, `search_businesses`), a ponte `link_brazil_to_global` e o `enrich_list` consomem créditos. A base BR (`search_brazil_companies`, `link_global_to_brazil`) e toda a operação de Pessoas/Empresas/Listas (leitura/escrita) são gratuitas. Não há rota de saldo — confira no painel da Nuvia.
 
 ---
 

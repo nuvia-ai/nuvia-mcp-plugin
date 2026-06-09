@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "nuvia",
-  "description": "Plugins da Nuvia para Claude Code — prospecção, CRM e atendimento via MCP da Nuvia.",
+  "description": "Plugins da Nuvia para Claude Code — prospecção, Listas e atendimento via MCP da Nuvia.",
   "owner": {
     "name": "Nuvia",
     "email": "developers@nuvia.ai"
@@ -10,7 +10,7 @@
     {
       "name": "nuvia-mcp",
       "source": "./plugin",
-      "description": "Skills que sabem usar o MCP da Nuvia com as melhores práticas: prospecção global e BR, investigação societária, CRM, listas, enriquecimento e atendimento. Já configura o conector da Nuvia.",
+      "description": "Skills que sabem usar o MCP da Nuvia com as melhores práticas: prospecção global e BR, investigação societária, Pessoas e Empresas, Listas, enriquecimento e atendimento. Já configura o conector da Nuvia.",
       "category": "productivity",
       "keywords": [
         "nuvia",

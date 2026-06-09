@@ -56,8 +56,8 @@ Para "decisores de tal cargo em tal setor/região": resolva `job_title` (catálo
 
 ## Passo 5 — Entregar
 
-Apresente uma tabela limpa: **Nome · Cargo · Nível · Localização · LinkedIn** (use o slug público de `linkedin_url_array[1]`). Não mostre identificadores internos. Se o usuário quiser trabalhar esses contatos no CRM, encaminhe para a skill `salvar-no-crm`.
+Apresente uma tabela limpa: **Nome · Cargo · Nível · Localização · LinkedIn** (use o slug público de `linkedin_url_array[1]`). Não mostre identificadores internos. Se o usuário quiser trabalhar esses contatos dentro da Nuvia, encaminhe para a skill `salvar-na-nuvia`.
 
 ## Próximos passos comuns
 - Cruzar quem é dono vs quem aparece publicamente → skill `investigar-empresa-br`.
-- Materializar os contatos no CRM → skill `salvar-no-crm`.
+- Materializar os contatos na Nuvia → skill `salvar-na-nuvia`.

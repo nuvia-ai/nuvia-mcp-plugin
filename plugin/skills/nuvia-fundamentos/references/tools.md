@@ -7,7 +7,7 @@ Marcas: 💳 consome crédito · 🆓 grátis · ⏳ assíncrono (job).
 
 ### `whoami` 🆓
 - **O quê.** Identidade autenticada na sessão.
-- **Quando.** Sanity check ("estou no tenant certo?") e para obter o id da empresa antes de operar CRM.
+- **Quando.** Sanity check ("estou na empresa certa?") e para obter o id da empresa antes de operar Pessoas/Empresas/Listas.
 - **Params:** nenhum. **Retorna:** `{ userId, companyId, userName, companyName, scopes[] }`.
 
 ## Prospecção / Descoberta
@@ -65,17 +65,17 @@ Marcas: 💳 consome crédito · 🆓 grátis · ⏳ assíncrono (job).
 - **Retorna:** `{ cnpj, company_data }` ou `{ found: false }`.
 - 💡 Use o domínio **institucional/histórico**; se falhar, tente `.com.br`/raiz do site.
 
-## Busca → CRM
+## Busca → Nuvia
 
 ### `save_search_results` ✏️ ⏳
-- **O quê.** Materializa resultados de busca como registros do CRM, opcionalmente numa lista.
+- **O quê.** Materializa resultados de busca como registros na Nuvia (Pessoas/Empresas), opcionalmente numa Lista.
 - **Params:** `ids[]` (até 2000) · `result_type` (`prospects`|`businesses`|`brazil_companies`) · `save_mode` (`contacts`|`list`) · `list_id?` **ou** `list_name?` (obrigatório se `save_mode=list`).
 - **Retorna:** `{ job_id }` → acompanhe com `get_save_status`.
 
 ### `get_save_status` 🆓
 - **Params:** `job_id`. **Retorna:** `{ status: pending|processing|completed|failed, result?, error? }`. O job expira em minutos — consulte logo após o save.
 
-## Contatos (CRM, tenant-scoped)
+## Pessoas / Contatos (restrito à sua empresa)
 
 Campos: `name`, `country_code` (DDI, só dígitos), `phone_number` (só dígitos), `email`, `job_title`, `seniority`, `department`, `city`, `region`, `country`, `linkedin_identifier`, `experience`, `skills`, `business` (empresa interna), `additional_attributes` (custom fields por slug; slug inválido é ignorado em silêncio; faz merge).
 
@@ -83,12 +83,12 @@ Campos: `name`, `country_code` (DDI, só dígitos), `phone_number` (só dígitos
 - `create_contacts` ✏️ — lote (até 100). Retorna `{ total, created[], failed[{index, reason}] }` (falha parcial isolada).
 - `update_contact` ✏️ — `id` + campos. `business: null` remove o vínculo de empresa. `additional_attributes` faz merge.
 - `update_contacts` ✏️ — lote (até 100). `updates[{id, ...}]`.
-- `list_contacts` 🆓 — lista/busca contatos do CRM (não é a base global).
+- `list_contacts` 🆓 — lista/busca os contatos (Pessoas) da sua empresa na Nuvia (não é a base global de prospecção).
 - `find_contacts_by_phone` 🆓 — `phones[]` (máx 50) → `{ contacts, phone_mapping }`. Normaliza DDI/máscara.
 - `add_contact_note` ✏️ — `contact_id`, `content` (máx 5000).
 - `list_contact_notes` 🆓 — `contact_id` → notas, mais recentes primeiro.
 
-## Listas / Tabelas (CRM)
+## Listas / registros
 
 Uma lista agrupa **contatos OU empresas** (`object_type`, imutável após criar). Colunas têm `source`: `record` (espelha campo do contato/empresa) ou `custom` (valor avulso).
 

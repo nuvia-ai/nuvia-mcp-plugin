@@ -1,9 +1,9 @@
 ---
 name: gerenciar-contatos
-description: Cria, edita, lista e anota contatos no CRM da Nuvia, e reconcilia telefones com a base. Use quando o usuário quer cadastrar contatos (individual ou em lote), atualizar dados, conferir se um contato já existe, dedupar por telefone, ou registrar notas. Tudo gratuito e dentro da empresa do usuário.
+description: Cria, edita, lista e anota Pessoas (contatos) na Nuvia, e reconcilia telefones com a base. Use quando o usuário quer cadastrar contatos (individual ou em lote), atualizar dados, conferir se um contato já existe, dedupar por telefone, ou registrar notas. Tudo gratuito e dentro da empresa do usuário.
 ---
 
-# Gerenciar contatos no CRM
+# Gerenciar Pessoas (contatos) na Nuvia
 
 Operações de contato são gratuitas e restritas à empresa do usuário (tenant).
 
@@ -13,7 +13,7 @@ Operações de contato são gratuitas e restritas à empresa do usuário (tenant
 
 Confira se o contato já existe:
 - Por telefone: `find_contacts_by_phone(phones: [...])` (máx 50) — normaliza DDI/máscara e devolve o mapeamento.
-- Por busca geral: `list_contacts` (busca o CRM, não a base global).
+- Por busca geral: `list_contacts` (busca as Pessoas da sua empresa, não a base global de prospecção).
 
 ## Criar
 
@@ -32,4 +32,8 @@ Confira se o contato já existe:
 
 ## Dica de qualidade
 
-Telefone e DDI vão **só com dígitos**. Ao importar de planilhas, limpe máscaras e separe DDI do número antes de criar. Para casar uma planilha de telefones com o CRM, `find_contacts_by_phone` já normaliza — use o `phone_mapping` retornado para saber qual número casou.
+Telefone e DDI vão **só com dígitos**. Ao importar de planilhas, limpe máscaras e separe DDI do número antes de criar. Para casar uma planilha de telefones com as Pessoas já cadastradas, `find_contacts_by_phone` já normaliza — use o `phone_mapping` retornado para saber qual número casou.
+
+## Importação em massa pela plataforma
+
+Para grandes importações (ex.: CSV), o usuário pode usar a própria interface da Nuvia. Aponte os artigos de ajuda em `nuvia-fundamentos/references/ajuda-nuvia.md` (importar via CSV, editar registros, campos personalizados).
