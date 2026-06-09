@@ -6,16 +6,10 @@ O que vem dentro:
 
 | Skill | Para quê |
 |---|---|
-| `nuvia-fundamentos` | Base de conhecimento (ordem de custo, lookups, paginação, linguagem). As outras dependem dela. |
-| `prospectar-decisores` | Achar CEO/C-level/decisores de uma empresa ou recorte. |
-| `investigar-empresa-br` | Cruzar quadro de sócios × identidade digital (quem manda de verdade). |
-| `pesquisar-empresas-br` | Empresas brasileiras por CNPJ/setor/UF/sócio (grátis). |
-| `pesquisar-empresas-global` | Empresas na base global por firmográficos. |
-| `salvar-na-nuvia` | Materializar resultados de busca como registros/Listas. |
-| `gerenciar-contatos` | Criar, editar, dedupar e anotar contatos. |
-| `gerenciar-listas` | Listas, colunas e registros (Pessoas/Empresas). |
-| `enriquecer-contatos` | Preencher e-mail/telefone (consome créditos). |
-| `inspecionar-atendimento` | Ler conversas do inbox e campanhas. |
+| `nuvia` | Base de conhecimento (ordem de custo, lookups, paginação, linguagem) **e** operação na plataforma: Listas, Pessoas (contatos), salvar buscas e enriquecimento (e-mail/telefone). As outras skills dependem desta. |
+| `nuvia-search` | Buscar empresas (BR por CNPJ/setor/UF/sócio e global por firmográficos) e prospectar decisores (CEO/C-level) de uma empresa ou recorte. |
+| `nuvia-deep` | Investigação societária BR — cruzar quadro de sócios × identidade digital (quem manda de verdade). |
+| `nuvia-conversas` | Ler conversas do inbox e desempenho de campanhas (somente leitura). |
 
 ---
 

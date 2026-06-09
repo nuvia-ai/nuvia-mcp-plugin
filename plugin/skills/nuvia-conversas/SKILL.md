@@ -1,5 +1,5 @@
 ---
-name: inspecionar-atendimento
+name: nuvia-conversas
 description: Atendimento e campanhas na Nuvia (somente leitura). Lê conversas do inbox, o histórico de mensagens de um contato, e o inventário e as métricas de campanhas. Use quando o usuário quer revisar atendimentos, acompanhar uma conversa, ou consultar o desempenho de uma campanha.
 ---
 
@@ -7,7 +7,7 @@ description: Atendimento e campanhas na Nuvia (somente leitura). Lê conversas d
 
 Tudo aqui é **somente leitura** e gratuito.
 
-**Antes de começar, leia a skill `nuvia-fundamentos`** (linguagem). Detalhes das tools em `nuvia-fundamentos/references/tools.md`.
+**Antes de começar, leia a skill `nuvia` (Parte 1 — Fundamentos)** (linguagem). Detalhes das tools em `../nuvia/references/tools.md`.
 
 ## Conversas (inbox)
 
