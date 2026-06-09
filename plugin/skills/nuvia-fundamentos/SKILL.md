@@ -1,0 +1,85 @@
+---
+name: nuvia-fundamentos
+description: Conhecimento-base para operar o MCP da Nuvia com as melhores práticas. Use SEMPRE antes de qualquer busca, prospecção ou operação de CRM na Nuvia — define a ordem de custo (grátis antes de pago), a regra de resolver filtros via lookup antes de buscar, a paginação correta, e o glossário de linguagem (como falar com o usuário sem expor termos técnicos da base). As outras skills da Nuvia dependem desta.
+---
+
+# Fundamentos do MCP da Nuvia
+
+Esta skill é a base de conhecimento que todas as outras skills da Nuvia usam. Antes de fazer buscas, prospecção ou operações de CRM, aplique as regras abaixo. Quando precisar de detalhes (catálogos, campos retornados, mapeamentos de filtro), leia o arquivo de referência indicado — não tente decorar tudo.
+
+## Regra de ouro nº 1 — gratuito antes de pago
+
+Algumas operações consomem créditos do cliente. **Faça todo o trabalho gratuito primeiro** e só gaste crédito no final, quando for realmente cruzar ou enriquecer dados.
+
+| Consome crédito 💳 | Gratuito 🆓 |
+|---|---|
+| `search_prospects` (pessoas/decisores) | `search_brazil_companies` (empresas BR por CNPJ) |
+| `search_businesses` (empresas globais) | `link_global_to_brazil` (domínio → cadastro BR) |
+| `link_brazil_to_global` (CNPJ → base global) | todo o CRM (contatos, listas, leitura) |
+| `enrich_list` (e-mail/telefone) | catálogos (`lookup_*`), `whoami` |
+
+**Antes de rodar qualquer operação que consome crédito, diga ao usuário o que vai gastar e por quê.** Não dispare buscas globais ou enriquecimento sem que o recorte esteja curado. Não existe rota que retorne saldo de créditos — o cliente confere no painel da Nuvia.
+
+## Regra de ouro nº 2 — resolver o filtro antes de buscar
+
+Filtros de **categoria, localização e cargo NÃO aceitam texto livre**. Chutar o valor gera busca vazia. Sempre resolva o termo no catálogo primeiro:
+
+- Base global (empresas/pessoas): `lookup_filter_values`
+- Base Brasil (CNPJ): `lookup_brazil_filter_values`
+
+O catálogo devolve `[{ label, value }]` — use o `value`. Retorno `[]` = o termo não existe, tente outro.
+
+Campos **enumerados** (use direto, sem lookup): porte BR, UF, situação cadastral, faixas de tamanho/receita de empresa, nível de cargo (`job_level`), departamento. A lista completa está em `references/catalogos-br.md` e `references/catalogos-global.md`.
+
+## Regra de ouro nº 3 — curadoria, não volume
+
+O objetivo é uma **lista enxuta e relevante**, não milhares de linhas. Refine os filtros (combine UF + setor + situação, etc.) até a lista ficar pequena antes de paginar. Milhares de resultados raramente ajudam — e em busca global ainda custam crédito. Se uma busca trouxer dezenas de milhões, provavelmente um filtro foi ignorado (chave errada — ver `references/mapeamentos-br.md`).
+
+## Regra de ouro nº 4 — paginar até o fim quando procura alguém
+
+Não existe filtro por nome em pessoas. Para achar uma pessoa específica numa empresa, trave a empresa, estreite por nível de cargo, e **pagine até esgotar os resultados** (`total_results`) ou use `page_size: 100`. Concluir "não está" sem esgotar é um falso negativo.
+
+## Linguagem com o usuário — esconda os termos da base
+
+A Nuvia roda sobre bases externas, mas **o usuário nunca deve ver o jargão técnico dessas bases**. Use internamente os identificadores que as tools exigem, mas **fale sempre em linguagem de prospecção**.
+
+| NÃO diga ao usuário | Diga assim |
+|---|---|
+| `business_id` | "a empresa" / "o identificador interno da empresa" (só se inevitável) |
+| `prospect_id` | "o contato" / "a pessoa" |
+| `professional_email_hashed` / "hash de e-mail" | "ainda não temos o e-mail aberto desse contato" |
+| nome de qualquer base/sistema de origem dos dados | "a base de prospecção da Nuvia" |
+| `QSA` cru | "o quadro de sócios e administradores" (e explique o que significa) |
+| `naics`, `sic_code` (códigos) | "o setor" / "o ramo de atividade" |
+
+Regras de ouro da linguagem:
+- Trate sempre tudo como "a base da Nuvia". Não especule nem nomeie sistemas de origem dos dados, mesmo que o usuário pergunte — apenas siga com a tarefa.
+- Use os IDs **silenciosamente** entre as chamadas de tools; não os exiba em respostas a menos que o usuário peça explicitamente o identificador.
+- Ao apresentar resultados, mostre nome da empresa/pessoa, cargo, setor, localização — não os IDs.
+
+## Os domínios de tools (mapa rápido)
+
+- **Identidade**: `whoami` — confirme o tenant antes de operar o CRM.
+- **Prospecção**: `search_prospects` 💳, `search_businesses` 💳, `search_brazil_companies` 🆓.
+- **Catálogos**: `lookup_filter_values`, `lookup_brazil_filter_values`.
+- **Ponte BR↔Global**: `link_brazil_to_global` 💳, `link_global_to_brazil` 🆓.
+- **Busca→CRM**: `save_search_results` (job assíncrono), `get_save_status`.
+- **Contatos**: `create_contact(s)`, `update_contact(s)`, `list_contacts`, `find_contacts_by_phone`, `add_contact_note`, `list_contact_notes`.
+- **Listas/registros**: `list_lists`, `get_list`, `create_list`, `add_list_column`, `add_records`, `list_records`, `update_record(s)`, `enrich_list` 💳.
+- **Campanhas (leitura)**: `list_campaigns`, `get_campaign`.
+- **Atendimento (leitura)**: `list_conversations`, `list_messages`.
+
+## Enriquecimento (e-mail/telefone) — atenção
+
+O enriquecimento (obter e-mail/telefone reais) é separado da busca. Por isso:
+- **Não filtre buscas por "tem e-mail"/"tem telefone"** — esse sinal não tem relação com o que o enriquecimento consegue resolver, corta gente à toa e não prevê o resultado real. O papel da busca é só **identificar**.
+- Trate `enrich_list` com cuidado: ela gasta crédito de verdade (e-mail = 1/contato, telefone = 10/contato) sobre **todos** os contatos elegíveis do recorte. Confirme o custo com o usuário antes de disparar. Detalhes em `references/enriquecimento.md`.
+
+## Arquivos de referência (leia sob demanda)
+
+- `references/tools.md` — assinatura de cada tool: params, retorno, dicas e armadilhas.
+- `references/catalogos-br.md` — valores de catálogo BR (setor, região, porte, UF, situação, faixas etárias de sócio) e como resolver os gigantes (CNAE, cidade, natureza).
+- `references/catalogos-global.md` — campos de catálogo vs enumerados na base global.
+- `references/mapeamentos-br.md` — mapeamento campo de catálogo → chave de filtro (ex.: `brazil_cnae` → `cnae_principal`; `brazil_socio` → `nome_socio`), MEI, geofiltros (cidade/bairro/CEP), busca por sócio.
+- `references/campos-retornados.md` — o que cada busca devolve (empresa global, pessoa, empresa BR) e quais campos importam.
+- `references/enriquecimento.md` — mecânica do enrich e por que "tem e-mail" ≠ enrich.

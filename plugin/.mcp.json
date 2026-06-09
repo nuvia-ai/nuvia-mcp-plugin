@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "nuvia": {
+      "type": "http",
+      "url": "https://api.nuvia.ai/mcp"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "nuvia-mcp",
+  "description": "Skills que sabem usar o MCP da Nuvia com as melhores práticas — prospecção (global e Brasil), investigação societária, CRM de contatos, listas/tabelas, enriquecimento e atendimento. Inclui o conector do MCP da Nuvia.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nuvia",
+    "email": "suporte@nuvia.co"
+  },
+  "homepage": "https://nuvia.co",
+  "repository": "https://github.com/nuvia-ai/nuvia-mcp-plugin",
+  "license": "MIT",
+  "keywords": [
+    "nuvia",
+    "prospeccao",
+    "crm",
+    "vendas",
+    "cnpj",
+    "leads"
+  ]
+}
