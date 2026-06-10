@@ -7,7 +7,7 @@ description: Investigação societária de empresa brasileira. Cruza o quadro de
 
 Cruzar o **quadro de sócios e administradores** (quem é sócio/administrador no papel, via base de CNPJ da Receita) com a **identidade digital** da empresa (quem aparece e atua publicamente). O cruzamento revela a estrutura real de poder, equity e decisão — e os buracos entre uma coisa e outra.
 
-**Antes de começar, leia a skill `nuvia` (Parte 1 — Fundamentos)** (ordem de custo, lookups, e como falar sem expor termos internos da base). Faça **todo o trabalho gratuito primeiro**; o único passo pago é a ponte para a base global (Fase 2) — gaste crédito só ali, quando for realmente cruzar com o lado digital.
+**Antes de começar, leia a skill `nuvia` (Parte 1 — Fundamentos)** (lookups, e como falar sem expor termos internos da base). Todo este fluxo — buscar o cadastro BR, cruzar com a base global e listar os decisores — é **gratuito**. O único custo na Nuvia é o enriquecimento de contato, que é um passo opcional e à parte (não faz parte desta investigação).
 
 ## A leitura que muda tudo: LTDA vs S.A.
 
@@ -18,24 +18,24 @@ A natureza jurídica define **o que o quadro de sócios significa**. Leia-a **an
 
 ## Fluxo em 3 fases
 
-**Fase 1 — Lado jurídico (grátis).** Tendo o CNPJ:
+**Fase 1 — Lado jurídico.** Tendo o CNPJ:
 ```
 search_brazil_companies(filters: { cnpjs: { values: ["<cnpj>"] } }, page_size: 1)
 ```
-Sem o CNPJ, ancore pelo domínio (grátis): `link_global_to_brazil(domain)`. Use o domínio institucional/histórico; se falhar, tente `.com.br`/raiz do site. Essa rota já devolve o cadastro inteiro com os sócios.
+Sem o CNPJ, ancore pelo domínio: `link_global_to_brazil(domain)`. Use o domínio institucional/histórico; se falhar, tente `.com.br`/raiz do site. Essa rota já devolve o cadastro inteiro com os sócios.
 Leia `natureza_juridica`, `socios[]` (com PF e PJ), `dominios[]`.
 
-**Fase 2 — Ponte para o global (consome crédito 💳), só quando for cruzar.** Este é o **único passo pago** do fluxo até aqui — confirme com o usuário antes de disparar.
+**Fase 2 — Ponte para o global.**
 ```
 link_brazil_to_global(cnpj, domain, company_name)  →  { business_id }
 ```
 Sempre passe `domain` E `company_name`. `found:false` → tente outro domínio. Sem o identificador da empresa, não há fase digital.
 
-**Fase 3 — Lado digital (grátis).**
+**Fase 3 — Lado digital.**
 ```
 search_prospects(filters: { business_id, job_level: ["c-suite","vice president","director"] }, page_size: 50/100)
 ```
-Pagine até esgotar; alargue o nível progressivamente se faltar alguém. A busca é gratuita — o custo só volta no **enriquecimento** (`enrich_list`, abrir e-mail/telefone), que é um passo separado e à parte.
+Pagine até esgotar; alargue o nível progressivamente se faltar alguém.
 
 ## Cruzar e classificar
 

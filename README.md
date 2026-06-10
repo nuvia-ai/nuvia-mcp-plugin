@@ -6,7 +6,7 @@ O que vem dentro:
 
 | Skill | Para quê |
 |---|---|
-| `nuvia` | Base de conhecimento (ordem de custo, lookups, paginação, linguagem) **e** operação na plataforma: Listas, Pessoas (contatos), salvar buscas e enriquecimento (e-mail/telefone). As outras skills dependem desta. |
+| `nuvia` | Base de conhecimento (custo, lookups, paginação, linguagem) **e** operação na plataforma: Listas, Pessoas (contatos), salvar buscas e enriquecimento (e-mail/telefone). As outras skills dependem desta. |
 | `nuvia-search` | Buscar empresas (BR por CNPJ/setor/UF/sócio e global por firmográficos) e prospectar decisores (CEO/C-level) de uma empresa ou recorte. |
 | `nuvia-deep` | Investigação societária BR — cruzar quadro de sócios × identidade digital (quem manda de verdade). |
 | `nuvia-conversas` | Ler conversas do inbox e desempenho de campanhas (somente leitura). |
@@ -58,7 +58,7 @@ Autentique-se quando solicitado. As ferramentas do MCP ficam disponíveis no cha
 **Listas e registros:** `list_lists`, `get_list`, `create_list`, `add_list_column`, `list_records`, `add_records`, `update_record(s)`, `enrich_list`.
 **Atendimento e campanhas (leitura):** `list_conversations`, `list_messages`, `list_campaigns`, `get_campaign`.
 
-> **Custo:** a busca global de empresas (`search_businesses`), a ponte `link_brazil_to_global` e o `enrich_list` consomem créditos. A busca de pessoas (`search_prospects`), a base BR (`search_brazil_companies`, `link_global_to_brazil`) e toda a operação de Pessoas/Empresas/Listas (leitura/escrita) são gratuitas. Não há rota de saldo — confira no painel da Nuvia.
+> **Custo:** buscar e cruzar é **tudo gratuito** — `search_prospects`, `search_businesses`, `search_brazil_companies` e as pontes (`link_brazil_to_global`, `link_global_to_brazil`), além de toda a operação de Pessoas/Empresas/Listas. A **única** operação que consome crédito é o enriquecimento de contato (`enrich_list`, abrir e-mail/telefone). Não há rota de saldo — confira no painel da Nuvia.
 
 ---
 

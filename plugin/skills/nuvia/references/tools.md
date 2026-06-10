@@ -22,9 +22,10 @@ Marcas: 💳 consome crédito · 🆓 grátis · ⏳ assíncrono (job).
 - ⚠️ **Sem filtro por nome.** Para achar alguém: trave o identificador da empresa, estreite por nível, pagine até o fim.
 - ⚠️ **Não use** `has_email`/`has_phone_number` (corta recall, não prevê enrich — ver `enriquecimento.md`).
 
-### `search_businesses` 💳
+### `search_businesses` 🆓
 - **O quê.** Empresas na base global por firmográficos (setor/NAICS, porte, faturamento, tech stack, localização, intenção de compra).
 - **Quando.** Prospecção de contas com foco global, ou para obter o identificador e firmográficos de uma empresa.
+- **Custo.** Gratuita — buscar/identificar não consome crédito. O custo só aparece no enriquecimento (`enrich_list`).
 - **Pré-requisito:** resolva categorias/localização com `lookup_filter_values(entity_type="businesses")` antes.
 - **Params (`filters`/`exclude`):** `company_name {values[]}`, identificador da empresa, `country_code`, `region_country_code`, `city_region_country`, `city_region`, `company_size`, `company_revenue`, `company_age`, `number_of_locations`, `naics_category`, `google_category`, `linkedin_category`, `company_tech_stack_tech`, `company_tech_stack_category`, `website_keywords {keywords[], operator}`, `business_intent_topics {topics[], topic_intent_level}`, `events {values[], last_occurrence}`, `is_public_company`, `page`, `page_size` (50, máx 100).
 - **Retorna:** empresa global (ver `campos-retornados.md`).
@@ -52,7 +53,7 @@ Marcas: 💳 consome crédito · 🆓 grátis · ⏳ assíncrono (job).
 
 ## Ponte BR ↔ Global
 
-### `link_brazil_to_global` 💳
+### `link_brazil_to_global` 🆓
 - **O quê.** Empresa BR (CNPJ) → identificador na base global.
 - **Quando.** Já tem a empresa BR e quer prospectar decisores ou firmográficos globais.
 - **Params:** `cnpj` (obrig.), `domain?`, `company_name?`.

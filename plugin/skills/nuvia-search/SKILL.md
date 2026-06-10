@@ -5,9 +5,9 @@ description: "Busca e prospecção na Nuvia. Encontra empresas brasileiras na ba
 
 # Buscar empresas e prospectar decisores
 
-Cobre as três buscas da Nuvia: **empresas BR** (base de CNPJ, grátis), **empresas global** (firmográficos, paga) e **decisores** (pessoas).
+Cobre as três buscas da Nuvia: **empresas BR** (base de CNPJ), **empresas global** (firmográficos) e **decisores** (pessoas). **Todas as buscas são gratuitas** — buscar e cruzar nunca consome crédito; o único custo na Nuvia é o enriquecimento de contato (skill `nuvia`).
 
-**Antes de começar, leia a skill `nuvia` (Parte 1 — Fundamentos):** ordem de custo, lookups obrigatórios, paginação, curadoria e como falar sem expor termos internos da base. Os catálogos e mapeamentos ficam em `../nuvia/references/`.
+**Antes de começar, leia a skill `nuvia` (Parte 1 — Fundamentos):** lookups obrigatórios, paginação, curadoria e como falar sem expor termos internos da base. Os catálogos e mapeamentos ficam em `../nuvia/references/`.
 
 > **Regra que vale para tudo aqui:** filtros de categoria/localização/cargo **não aceitam texto livre** — resolva o termo no catálogo (`lookup_*`) antes de buscar. E o objetivo é **curadoria, não volume**: refine até a lista ficar enxuta antes de paginar.
 
@@ -47,9 +47,9 @@ Entregar — tabela: **Empresa · CNPJ · Setor/CNAE · UF/Cidade · Situação 
 
 ---
 
-## B) Empresas na base global (firmográficos — 💳 CONSOME CRÉDITO)
+## B) Empresas na base global (firmográficos — 🆓 gratuita)
 
-> **Atenção:** `search_businesses` **consome créditos**. Avise o usuário antes de disparar, use `page_size` 10–20, **não repita buscas idênticas** e cure o recorte ao máximo antes de paginar. Para empresas brasileiras, prefira a busca BR (seção A, gratuita) sempre que possível.
+> A busca global é **gratuita**. Ainda assim, comece com `page_size` 10–20 e cure o recorte — qualidade vence volume. Para empresas brasileiras, prefira a busca BR (seção A).
 
 Quando usar a base global:
 - Prospecção de contas fora do Brasil.
@@ -78,28 +78,27 @@ Entregar — tabela: **Empresa · Domínio · Setor · Porte · Faturamento · L
 
 ## C) Decisores de uma empresa (pessoas)
 
-Objetivo: identificar as pessoas certas, gastando crédito só quando necessário e sem deixar ninguém passar batido.
+Objetivo: identificar as pessoas certas, sem deixar ninguém passar batido. Todo o fluxo (ancorar, ponte, buscar decisores) é **gratuito**.
 
 **Passo 0 — De onde você parte?**
-- **Tem domínio ou CNPJ?** Comece pelo lado gratuito (Passo 1) para ancorar a empresa antes de gastar crédito.
-- **Tem só o nome?** Empresa BR: ache CNPJ/domínio com `search_brazil_companies` (grátis). Empresa global: `search_businesses` (custa) só se necessário.
+- **Tem domínio ou CNPJ?** Ancore a empresa pelo cadastro brasileiro (Passo 1).
+- **Tem só o nome?** Empresa BR: ache CNPJ/domínio com `search_brazil_companies`. Empresa global: `search_businesses`.
 - **Recorte amplo** ("CMOs de fintechs em SP")? Vá direto ao Passo 4, resolvendo o cargo no catálogo antes.
 
-**Passo 1 — Ancorar a empresa de graça (quando der)**
-- Tem o domínio: `link_global_to_brazil(domain)` (grátis) devolve cadastro BR e domínios.
-- Tem o CNPJ: `search_brazil_companies(filters: { cnpjs: { values: ["<cnpj sem máscara>"] } }, page_size: 1)` — match exato, grátis, já traz domínios e razão social.
+**Passo 1 — Ancorar a empresa (quando der)**
+- Tem o domínio: `link_global_to_brazil(domain)` devolve cadastro BR e domínios.
+- Tem o CNPJ: `search_brazil_companies(filters: { cnpjs: { values: ["<cnpj sem máscara>"] } }, page_size: 1)` — match exato, já traz domínios e razão social.
 
 Guarde `domain` (de `dominios[]`) e a razão social — elevam muito o acerto na ponte para a base global.
 
-**Passo 2 — Ponte para a base global (💳 consome crédito)**
+**Passo 2 — Ponte para a base global**
 ```
 link_brazil_to_global(cnpj, domain, company_name)  →  { business_id }
 ```
 - **Sempre passe `domain` E `company_name`.** Sem o vínculo por CNPJ, o match cai para domínio e depois nome — informar os dois aumenta o acerto.
 - `found: false`? Tente outro domínio de `dominios[]` antes de desistir. Sem o identificador da empresa não há como buscar decisores.
-- Avise: "vou fazer a ponte para a base global da Nuvia para localizar a empresa — esse vínculo consome créditos". (A busca dos decisores em si é gratuita.)
 
-**Passo 3 — Buscar os decisores (🆓 grátis)**
+**Passo 3 — Buscar os decisores**
 ```
 search_prospects(
   filters = { business_id: { values: ["<id da empresa>"] },

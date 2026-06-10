@@ -1,6 +1,6 @@
 ---
 name: nuvia
-description: "Base e operação da Nuvia. Fundamentos (ordem de custo, resolver filtros via lookup antes de buscar, paginação, terminologia oficial, como apresentar resultados) e tudo que se faz dentro da plataforma: criar e trabalhar Listas (colunas, registros, edição em lote), cadastrar e editar Pessoas (contatos) individual ou em lote, evitar duplicados por telefone, registrar notas, salvar resultados de busca como Pessoas/Empresas dentro de uma Lista, e enriquecer e-mail/telefone antes de uma campanha. Use SEMPRE antes de qualquer busca ou operação na Nuvia; as skills nuvia-search, nuvia-deep e nuvia-conversas dependem desta."
+description: "Base e operação da Nuvia. Fundamentos (custo, resolver filtros via lookup antes de buscar, paginação, terminologia oficial, como apresentar resultados) e tudo que se faz dentro da plataforma: criar e trabalhar Listas (colunas, registros, edição em lote), cadastrar e editar Pessoas (contatos) individual ou em lote, evitar duplicados por telefone, registrar notas, salvar resultados de busca como Pessoas/Empresas dentro de uma Lista, e enriquecer e-mail/telefone antes de uma campanha. Use SEMPRE antes de qualquer busca ou operação na Nuvia; as skills nuvia-search, nuvia-deep e nuvia-conversas dependem desta."
 ---
 
 # Nuvia — fundamentos e operação na plataforma
@@ -13,18 +13,17 @@ Quando precisar de detalhes (catálogos, campos retornados, mapeamentos de filtr
 
 # Parte 1 — Fundamentos
 
-## Regra de ouro nº 1 — gratuito antes de pago
+## Regra de ouro nº 1 — buscar é grátis; só o enriquecimento consome crédito
 
-Algumas operações consomem créditos do cliente. **Faça todo o trabalho gratuito primeiro** e só gaste crédito no final, quando for realmente cruzar ou enriquecer dados.
+**Buscar e cruzar dados nunca custa crédito** — nem CNPJ, nem global, nem a ponte entre as bases. A **única** operação que consome crédito é o **enriquecimento de contato** (`enrich_list`, abrir e-mail/telefone).
 
 | Consome crédito 💳 | Gratuito 🆓 |
 |---|---|
-| `search_businesses` (empresas globais) | `search_prospects` (pessoas/decisores) |
-| `link_brazil_to_global` (CNPJ → base global) | `search_brazil_companies` (empresas BR por CNPJ) |
-| `enrich_list` (e-mail/telefone) | `link_global_to_brazil` (domínio → cadastro BR) |
+| `enrich_list` (e-mail/telefone) | `search_prospects`, `search_businesses`, `search_brazil_companies` (todas as buscas) |
+| | `link_brazil_to_global`, `link_global_to_brazil` (as pontes) |
 | | toda a plataforma (Pessoas, Empresas, Listas, leitura), catálogos (`lookup_*`), `whoami` |
 
-**Antes de rodar qualquer operação que consome crédito, diga ao usuário o que vai gastar e por quê.** Não dispare buscas globais ou enriquecimento sem que o recorte esteja curado. Não existe rota que retorne saldo de créditos — o cliente confere no painel da Nuvia.
+Como buscar e cruzar é grátis, **não há ordem de custo a respeitar nas buscas** — busque à vontade. O cuidado com crédito se aplica **apenas ao enriquecimento**: antes de rodar `enrich_list`, diga ao usuário o que vai gastar e confirme. Não existe rota que retorne saldo de créditos — o cliente confere no painel da Nuvia.
 
 ## Regra de ouro nº 2 — resolver o filtro antes de buscar
 
@@ -90,9 +89,9 @@ Nunca diga "CRM", "salvar no CRM" ou "registros do CRM" — diga "salvar na Nuvi
 ## Os domínios de tools (mapa rápido)
 
 - **Identidade**: `whoami` — confirme a empresa (tenant) antes de operar Pessoas/Empresas/Listas.
-- **Prospecção** (skill `nuvia-search`): `search_prospects` 🆓, `search_businesses` 💳, `search_brazil_companies` 🆓.
+- **Prospecção** (skill `nuvia-search`): `search_prospects` 🆓, `search_businesses` 🆓, `search_brazil_companies` 🆓.
 - **Catálogos**: `lookup_filter_values`, `lookup_brazil_filter_values`.
-- **Ponte BR↔Global**: `link_brazil_to_global` 💳, `link_global_to_brazil` 🆓.
+- **Ponte BR↔Global**: `link_brazil_to_global` 🆓, `link_global_to_brazil` 🆓.
 - **Busca→Nuvia**: `save_search_results` (job assíncrono), `get_save_status`.
 - **Pessoas (contatos)**: `create_contact(s)`, `update_contact(s)`, `list_contacts`, `find_contacts_by_phone`, `add_contact_note`, `list_contact_notes`.
 - **Listas/registros**: `list_lists`, `get_list`, `create_list`, `add_list_column`, `add_records`, `list_records`, `update_record(s)`, `enrich_list` 💳.
