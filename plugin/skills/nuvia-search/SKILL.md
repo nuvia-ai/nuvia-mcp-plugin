@@ -11,11 +11,30 @@ Cobre as três buscas da Nuvia: **empresas BR** (base de CNPJ), **empresas globa
 
 > **Regra que vale para tudo aqui:** filtros de categoria/localização/cargo **não aceitam texto livre** — resolva o termo no catálogo (`lookup_*`) antes de buscar. E o objetivo é **curadoria, não volume**: refine até a lista ficar enxuta antes de paginar.
 
+## Qual base usar? Decida pelo filtro decisivo (não pela geografia)
+
+O erro comum é escolher a base pelo país. Decida pelo **filtro que define o recorte** — e só **força** a global o filtro que **não tem equivalente na BR**. Um filtro que existe nas duas bases (localização, setor, receita) nunca força a global: para alvo brasileiro, fique na BR e use a global só se o decisivo for exclusivo dela.
+
+| O filtro decisivo é… | Base | Campos |
+|---|---|---|
+| Cadastral / societário | **BR** (seção A) | CNPJ, situação cadastral, sócio, capital social, natureza jurídica |
+| **Exclusivos da global** | **Global** (seção B) | nº de funcionários (`company_size`), tech stack (`company_tech_stack_tech`), intenção de compra (`business_intent_topics`), eventos (`events`) |
+| Existe nas duas (não força a base) | a que o resto do recorte indicar | setor (CNAE↔NAICS), receita (`porte`↔`company_revenue`), localização — só muda a granularidade |
+| Precisa dos dois (ex.: empresas BR *e* seu headcount) | comece numa, faça a **ponte** | `link_brazil_to_global` / `link_global_to_brazil` (seção C, passo 2) |
+
+⚠️ **Quando o filtro decisivo é só da global e o alvo é o Brasil, sinalize o tradeoff — não troque calado.** A cobertura BR da base global é uma **fração** da base de CNPJ (validado: Rio tem ~15 mil empresas grandes na global vs +1 milhão de CNPJs ativos) — e fica mais rasa quanto menor a presença digital/internacional da empresa. Diga em uma linha e ofereça a alternativa:
+
+> "Nº de funcionários só existe na base global, cuja cobertura BR é parcial — empresas sem presença digital forte podem faltar. Alternativa: base de CNPJ por `porte` (régua de **receita**, não de funcionários), cobertura quase completa, mas sem filtro fino por headcount."
+
+Escolha a base que o filtro decisivo exige, sinalize, siga a entrega.
+
 ---
 
 ## A) Empresas brasileiras (base de CNPJ — 🆓 gratuita)
 
 A base é gratuita e enorme. Cure o recorte com os filtros certos.
+
+⚠️ **Não há filtro por nº de funcionários aqui.** O `porte` da Receita (`Microempresa - ME` · `Empresa de pequeno porte - EPP` · `Demais empresas`) é régua de **receita/faturamento**, não de headcount. Recorte por "+N funcionários" só na base global (seção B) — pesando o tradeoff de cobertura do bloco "Qual base usar?".
 
 UF/CNAE/natureza/cidade/sócio só aceitam valores de catálogo: `lookup_brazil_filter_values(field, query)` com **uma palavra-chave limpa**.
 
@@ -49,7 +68,7 @@ Entregar — tabela: **Empresa · CNPJ · Setor/CNAE · UF/Cidade · Situação 
 
 ## B) Empresas na base global (firmográficos — 🆓 gratuita)
 
-> A busca global é **gratuita**. Ainda assim, comece com `page_size` 10–20 e cure o recorte — qualidade vence volume. Para empresas brasileiras, prefira a busca BR (seção A).
+> A busca global é **gratuita**. Ainda assim, comece com `page_size` 10–20 e cure o recorte — qualidade vence volume. Para alvos brasileiros, use a global só quando o **filtro decisivo** for dela (ver bloco "Qual base usar?") — e sinalize o tradeoff de cobertura.
 
 Quando usar a base global:
 - Prospecção de contas fora do Brasil.
@@ -68,6 +87,8 @@ search_businesses(filters: {
 }, page_size: 10)   # comece pequeno; pagine só se necessário
 ```
 
+- **Nº de funcionários é por FAIXA, não número exato.** `company_size`: `1-10 · 11-50 · 51-200 · 201-500 · 501-1000 · 1001-5000 · 5001-10000 · 10001+`. Para "+N", pegue **todas** as faixas acima do corte. A faixa que *cruza* o corte é **parcial** — ex.: "+100" → use `51-200` e acima, mas o `51-200` mistura empresas de 51 a 99 (que não batem) com 100 a 200 (que batem). **Sinalize na entrega quem caiu na faixa de fronteira: precisa de conferência manual.**
+- **Localização global é ruidosa.** `city_region_country` pode trazer matches fora do lugar (ex.: filtrar "Rio De Janeiro, BR" pode retornar uma empresa sediada nos EUA). **Confira `city_name`/`country_name` no resultado** antes de entregar — não confie só no filtro.
 - **Intenção de compra / eventos:** `business_intent_topics {topics[], topic_intent_level}` e `events` ajudam a priorizar contas quentes.
 - **Não use** "tem website/e-mail" como filtro de qualificação — ver `../nuvia/references/enriquecimento.md`.
 - **NAICS round-trip:** o `naics` que volta numa empresa é o mesmo `value` do lookup `naics_category`. Pegue o de uma empresa-alvo conhecida para achar semelhantes.
